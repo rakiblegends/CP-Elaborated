@@ -1,4 +1,5 @@
 *.out
 *.cph
 *.txt
+*.exe
 Debugging.out
