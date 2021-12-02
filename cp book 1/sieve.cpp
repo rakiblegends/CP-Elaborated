@@ -1,36 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int n=  100;
-void sieve(int n){
-    vec[0]= 0;
-    vec[1]=0;
-    for(int i =2; i<=sqrt(n);i++){
-        if(vec[i]==1){
-            for(int j = i * i; i*j<=n;j+=i){
-                vec[j] = 0;
+vector <bool> primes(101,true);
+void sieve(){
+    primes[0]=false,primes[1]=false;
+    for(int i=2;i*i<=100;i++){
+        if(primes[i]==true){
+            for(int j=i*i;j<=100;j+=i){
+                primes[j]=false;
             }
         }
     }
 }
 int main(){
-    // for(int i=0; i<40;i++){
-    //     ara[i]='0';
-    // }
-    int ara [10];
-    // memset(ara, false, sizeof(ara));
-    ara[0] = true;ara[1]=true;
-    int i,m;
-    for(i=2;i<=sqrt(n);i++){
-        if(ara[i]==false){
-            for(int j=i*i;j<=n;j+=i){
-                ara[j] = true;
-            }
-        }
-    }
-    for(i=2;i<=n;i++){
-        if(ara[i]==false){
-            cout<< i << " ";
-        }
-    }
+    
     return 0;
 }
