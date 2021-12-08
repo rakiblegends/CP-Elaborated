@@ -31,7 +31,7 @@ int main(){
     int divided=1,an;
     for(int j=0;j<i;j++){
         if(coun[j]>0){
-            divided*=fact(j+1);
+            divided*=fact(coun[j]+1);
         }
     }
     an = fact(i)/divided;

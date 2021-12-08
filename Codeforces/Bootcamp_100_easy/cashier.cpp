@@ -15,5 +15,4 @@ int main()
     max += (l - sum) / a;
     cout << max;
     return 0;
-    
 }
