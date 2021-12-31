@@ -1,35 +1,39 @@
 #include<bits/stdc++.h>
-#define M 1000010
 using namespace std;
-bitset <M> primes ;
-void sieve(){
-    primes[0]=true,primes[1]=true;
-    for(long long int i=2;i*i<=M;i++){
-        if(primes[i]==false){
-            for(long long int j=i*i;j<=M;j+=i){
-                primes[j]=true;
+int divisorCount(int n){
+    if(n==1 || n==2) return n;
+    int divisors = 1;
+    if(n%2==0){
+        int cnt = 1;
+        while(n%2==0){
+            n/=2;
+            cnt++;
+        }
+        divisors*=cnt;
+    }
+    if(n>1){
+        for(int i = 3; i<=sqrt(n);i+=2){
+            if(n%i==0){
+                int cnt = 1;
+                while(n%i==0){
+                    n/=i;
+                    cnt++;
+                }
+                divisors*= cnt;
             }
         }
     }
+    if(n>1){
+        divisors+=divisors;
+    }
+    return divisors;
 }
-int f(int n);
+
 int main(){
-    sieve();
-    long long int n,sum=0;cin>>n;
-    cout << f(n);
-    cout << log(25)/log(5);
-}
-int f(int n){
-    if(n==1){
-        return 1;
-    }else if(n==2){
-        return 2;
-    }else{
-        int divisors = 1;
-        for(long long int i=2;i*i<=n; i++){
-                if(primes[])
-            }
-        }
-        return divisors;
+    int n,sum = 0; cin >> n;
+    for(int i = 1; i<=n; i++){
+        sum+=divisorCount(i);
     }
+    cout << sum << "\n";
+    return 0;
 }
