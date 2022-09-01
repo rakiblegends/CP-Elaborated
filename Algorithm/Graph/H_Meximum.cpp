@@ -34,14 +34,14 @@ double eps = 1e-12;
 
 const ll N = 2e5+10;
 vector<ll> score(1);
-set<ll> s;
+vector<ll> freq(N);
 vector<ll> g[N];//Tree
 ll  ans = 0;
 void dfs(ll vertex,ll par,ll mex){
-    s.insert(score[vertex]);
+    if(score[vertex]<N) freq[score[vertex]]++;
     //Searching for new mex.
     for(ll i = mex;;i++){
-        if(!s.count(i)){
+        if(!freq[i]){
             mex = i;
             break;
         }
@@ -51,7 +51,7 @@ void dfs(ll vertex,ll par,ll mex){
     for(ll child: g[vertex]){
         if(child!=par) dfs(child,vertex,mex);
     }
-    s.erase(score[vertex]);
+    if(score[vertex]<N) freq[score[vertex]]--;
 }
 
 void solve(){
