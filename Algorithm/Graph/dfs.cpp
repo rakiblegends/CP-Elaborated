@@ -1,28 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 const long long N = 1e5+10;
-vector<long long> g[N];
-bool vis[N];
-void dfs(int vertex){
-    //Take action on vertex after entering the vertex.
-    cout << vertex << " ";
-    vis[vertex] =1;
-    for(int child: g[vertex]){
-        if(vis[child]) continue; // Or if(!vis[child]) dfs(child);
-        //Take action on child before entering the child.
-        dfs(child);
-        //Take action on child after exiting the child node.
+
+vector<ll> adj[N];
+//vector<pair<ll,ll>> adj[N];
+ll vis[N];
+void dfs(ll u){
+    vis[u] = 1;
+    for(auto v: adj[u]){
+        if(!vis[v]) dfs(v);
     }
-    //Take action on vertex before exiting the vertex.
-    // cout << vertex << " ";
+
 }
+
 int main(){
     long long n,m,u,v;
     cin>>n>>m;
     for(int i = 0; i<m; i++){
         cin>>u>>v;
-        g[u].push_back(v);
-        g[v].push_back(u);//Undirected
+        adj[u].push_back(v);
+        adj[v].push_back(u);//Undirected
+        //for weighted graph.
+        //cin>>u>>v>>w;
+        //adj[u].pb({v,w});
+        //adj[v].pb({u,w});
     }
     dfs(0);
     // for(int i = 0; i<n; i++){
